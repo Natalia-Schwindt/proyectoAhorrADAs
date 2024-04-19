@@ -62,6 +62,41 @@
             <p>Cambia los filtros o agrega operaciones</p>
         </div>
     </section>
+    <section>
+        <div>
+            <h2>Filtros</h2>
+            <label>Ocultar filtros</label>
+        </div>
+        <form>
+            <label for="tipo">Tipo</label>
+            <select name="tipo" id="tipo">
+                <option value="todos">Todos</option>
+                <option value="gasto">Gasto</option>
+                <option value="ganancia">Ganancia</option>
+            </select>
+            <label for="categoria">Categoria</label>
+            <select name="categoria" id="categoria">
+                <option value="todas">Todas</option>
+                <option value="comida">Comida</option>
+                <option value="servicios">Servicios</option>
+                <option value="salidas">Salidas</option>
+                <option value="educacion">Educación</option>
+                <option value="transporte">Transporte</option>
+                <option value="trabajo">Trabajo</option>
+            </select>
+            <label for="desde">Desde</label>
+            <input type="date" name="desde" id="desde">
+            <label for="ordenarPor">Ordenar por</label>
+            <select name="ordenarPor" id="ordenarPor">
+                <option value="masReciente">Más reciente</option>
+                <option value="menosReciente">Menos reciente</option>
+                <option value="mayorMonto">Mayor monto</option>
+                <option value="menorMonto">Menor monto</option>
+                <option value="aZ">A/Z</option>
+                <option value="zA">Z/A</option>
+            </select>
+        </form>
+    </section>
 </main>
 </body>
 </html>
