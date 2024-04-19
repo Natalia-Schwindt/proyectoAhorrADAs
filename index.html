@@ -9,28 +9,28 @@
 </head>
 <body>
     <header class="flex justify-between items-center bg-green-500 h-16">
-        <div class="flex justify-around items-center w-2/3">
+        <div class="flex justify-around items-center w-2/3 md:w-1/3 lg:w-1/3 xl:w-2/12">
             <i class="fa-solid fa-wallet text-white text-3xl"></i>
             <h1 class="text-white text-3xl font-bold">AhorrADAs</h1>
         </div>
         <nav>
-            <div class="justify-end flex">
+            <div class="justify-end flex lg:hidden">
                 <button class="mr-8">
                     <i class="fa-solid fa-bars text-white"></i>
                 </button>
             </div>
-            <ul class="absolute top-16 left-0 w-full h-28 flex flex-col items-center justify-center border-t bg-green-500 gap-y-2.5">
-                <li class="text-white w-4/12">
+            <ul class="absolute top-16 left-0 w-full h-28 flex flex-col items-center justify-center border-t bg-green-500 gap-y-2.5 position lg:relative lg:top-0 lg:flex lg:flex-row lg:border-t-0 lg:h-0 lg:w-full lg:gap-y-0">
+                <li class="text-white w-4/12 md:w-1/6 lg:w-40">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="" class="ml-3">Balance</a>
+                    <a href="" class="ml-3 lg:ml-1">Balance</a>
                 </li>
-                <li class="text-white w-4/12">
+                <li class="text-white w-4/12 md:w-1/6 lg:w-40">
                     <i class="fa-solid fa-tag"></i>
-                    <a href="" class="ml-3">Categorías</a>
+                    <a href="" class="ml-3 lg:ml-1">Categorías</a>
                 </li>
-                <li class="text-white w-4/12">
+                <li class="text-white w-4/12 md:w-1/6 lg:w-40">
                     <i class="fa-solid fa-chart-pie"></i>
-                    <a href="" class="ml-3">Reportes</a>
+                    <a href="" class="ml-3 lg:ml-1">Reportes</a>
                 </li>
             </ul>
         </nav>
