@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/cd30d5437a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div>
-            <i class="fa-solid fa-wallet"></i>
-            <h1>AhorrADAs</h1>
+    <header class="flex justify-between items-center bg-green-500 h-16">
+        <div class="flex justify-around items-center w-2/3">
+            <i class="fa-solid fa-wallet text-white text-3xl"></i>
+            <h1 class="text-white text-3xl font-bold">AhorrADAs</h1>
         </div>
         <nav>
-            <div>
-                <button>
-                    <i class="fa-solid fa-bars"></i>
+            <div class="justify-end flex">
+                <button class="mr-8">
+                    <i class="fa-solid fa-bars text-white"></i>
                 </button>
             </div>
-            <ul >
-                <li>
+            <ul class="absolute top-16 left-0 w-full h-28 flex flex-col items-center justify-center border-t bg-green-500 gap-y-2.5">
+                <li class="text-white w-4/12">
                     <i class="fa-solid fa-chart-line"></i>
-                    <a href="">Balance</a>
+                    <a href="" class="ml-3">Balance</a>
                 </li>
-                <li>
+                <li class="text-white w-4/12">
                     <i class="fa-solid fa-tag"></i>
-                    <a href="">Categorías</a>
+                    <a href="" class="ml-3">Categorías</a>
                 </li>
-                <li>
+                <li class="text-white w-4/12">
                     <i class="fa-solid fa-chart-pie"></i>
-                    <a href="">Reportes</a>
+                    <a href="" class="ml-3">Reportes</a>
                 </li>
             </ul>
         </nav>
