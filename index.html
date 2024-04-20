@@ -56,6 +56,47 @@
             <h2>Operaciones</h2>
             <button>+ Nueva operación</button>
         </div>
+        <div class="hidden">
+            <h2>Nueva operación</h2>
+            <form>
+                <ul>
+                    <li>
+                        <label>Descripción</label>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <label>Monto</label>
+                        <input type="number">
+                    </li>
+                    <li>
+                        <label>Tipo</label>
+                        <select name="select">
+                            <option value="gasto">Gasto</option>
+                            <option value="ganancia" selected>Ganancia</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Categoría</label>
+                        <select name="select">
+                            <option value="comida">Comida</option>
+                            <option value="servicio" selected>Servicios</option>
+                            <option value="salida" selected>Salidas</option>
+                            <option value="educacion" selected>Educación</option>
+                            <option value="transporte" selected>Transporte</option>
+                            <option value="trabajo" selected>Trabajo</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Fecha</label>
+                        <input type="date">
+                    </li>
+                    <li>
+                        <button>Cancelar</button>
+                        <button>Agregar</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
         <figure>
             <img src="assets/operaciones.svg" alt="">
         </figure>
