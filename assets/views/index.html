@@ -87,11 +87,20 @@
             </select>
         </form>
     </section>
-    <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12">
+    <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5">
         <div>
-            <h2>Operaciones</h2>
-            <button>+ Nueva operación</button>
+            <h2 class="text-2xl font-bold text-slate-700 mb-7">Operaciones</h2>
+            <button class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md">+ Nueva operación</button>
         </div>
+        <figure class="w-full mb-8">
+            <img src="/assets/billetera.svg" alt="">
+        </figure>
+        <div class="flex flex-col items-center pb-20">
+            <h2 class="text-2xl text-slate-700 mb-5">Sin resultados</h2>
+            <p class="text-base text-center text-slate-600">Cambia los filtros o agrega operaciones</p>
+        </div>
+    </section>
+    <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12">
         <div class="flex-col flex flex-col p-5 gap-6 hidden">
             <h2 class="text-3xl font-bold text-gray-800">Nueva operación</h2>
             <form class="">
@@ -132,13 +141,6 @@
                     </li>
                 </ul>
             </form>
-        </div>
-        <figure>
-            <img src="assets/operaciones.svg" alt="">
-        </figure>
-        <div>
-            <h2>Sin resultados</h2>
-            <p>Cambia los filtros o agrega operaciones</p>
         </div>
     </section>
 </main>
