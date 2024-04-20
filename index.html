@@ -53,19 +53,19 @@
         </div>
     </section>
     <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12">
-        <div>
-            <h2>Filtros</h2>
+        <div class="flex justify-between items-center p-5 text-blue-500">
+            <h2 class="text-2xl font-bold text-slate-700">Filtros</h2>
             <label>Ocultar filtros</label>
         </div>
-        <form>
-            <label for="tipo">Tipo</label>
-            <select name="tipo" id="tipo">
+        <form class="p-5 gap-6 w-full">
+            <label for="tipo" class="font-bold">Tipo</label>
+            <select name="tipo" id="tipo" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                 <option value="todos">Todos</option>
                 <option value="gasto">Gasto</option>
                 <option value="ganancia">Ganancia</option>
             </select>
-            <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria">
+            <label for="categoria" class="font-bold">Categoria</label>
+            <select name="categoria" id="categoria" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                 <option value="todas">Todas</option>
                 <option value="comida">Comida</option>
                 <option value="servicios">Servicios</option>
@@ -74,10 +74,10 @@
                 <option value="transporte">Transporte</option>
                 <option value="trabajo">Trabajo</option>
             </select>
-            <label for="desde">Desde</label>
-            <input type="date" name="desde" id="desde">
-            <label for="ordenarPor">Ordenar por</label>
-            <select name="ordenarPor" id="ordenarPor">
+            <label for="desde" class="font-bold">Desde</label>
+            <input type="date" name="desde" id="desde" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
+            <label for="ordenarPor" class="font-bold">Ordenar por</label>
+            <select name="ordenarPor" id="ordenarPor" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                 <option value="masReciente">Más reciente</option>
                 <option value="menosReciente">Menos reciente</option>
                 <option value="mayorMonto">Mayor monto</option>
