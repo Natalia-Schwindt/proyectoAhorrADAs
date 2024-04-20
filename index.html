@@ -57,28 +57,28 @@
             <h2>Operaciones</h2>
             <button>+ Nueva operación</button>
         </div>
-        <div class="hidden">
-            <h2>Nueva operación</h2>
-            <form>
-                <ul>
-                    <li>
-                        <label>Descripción</label>
-                        <input type="text">
+        <div class="flex-col flex flex-col p-5 gap-6 hidden">
+            <h2 class="text-3xl font-bold text-gray-800">Nueva operación</h2>
+            <form class="">
+                <ul class="flex flex-col gap-6">
+                    <li class="flex flex-col gap-2">
+                        <label class="font-bold text-gray-800">Descripción</label>
+                        <input type="text" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
-                    <li>
-                        <label>Monto</label>
-                        <input type="number">
+                    <li class="flex flex-col gap-2">
+                        <label class="font-bold text-gray-800">Monto</label>
+                        <input type="number" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
-                    <li>
-                        <label>Tipo</label>
-                        <select name="select">
+                    <li class="flex flex-col gap-2">
+                        <label class="font-bold text-gray-800">Tipo</label>
+                        <select name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                             <option value="gasto">Gasto</option>
                             <option value="ganancia" selected>Ganancia</option>
                         </select>
                     </li>
-                    <li>
-                        <label>Categoría</label>
-                        <select name="select">
+                    <li class="flex flex-col gap-2">
+                        <label class="font-bold text-gray-800">Categoría</label>
+                        <select name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                             <option value="comida">Comida</option>
                             <option value="servicio" selected>Servicios</option>
                             <option value="salida" selected>Salidas</option>
@@ -87,13 +87,13 @@
                             <option value="trabajo" selected>Trabajo</option>
                         </select>
                     </li>
-                    <li>
-                        <label>Fecha</label>
-                        <input type="date">
+                    <li class="flex flex-col gap-2">
+                        <label class="font-bold text-gray-800">Fecha</label>
+                        <input type="date" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
-                    <li>
-                        <button>Cancelar</button>
-                        <button>Agregar</button>
+                    <li class="flex justify-end gap-3">
+                        <button class="bg-slate-300 p-2 rounded hover:bg-sky-700 hover:text-white">Cancelar</button>
+                        <button class="bg-green-500 p-2 rounded hover:bg-sky-700 hover:text-white">Agregar</button>
                     </li>
                 </ul>
             </form>
