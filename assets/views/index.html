@@ -181,17 +181,17 @@
                 </ul>
             </form>
         </section>
-        <section>
+        <section class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12">
             <h2 class="text-3xl font-bold text-gray-800">Editar categoría</h2>
             <form>
-                <ul>
-                    <li>
-                        <label>Nombre</label>
-                        <input type="text">
+                <ul class="flex flex-col gap-6">
+                    <li class="flex flex-col gap-2">
+                        <label class="flex flex-col gap-2">Nombre</label>
+                        <input type="text" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
-                    <li>
-                        <button>Cancelar</button>
-                        <button>Agregar</button>
+                    <li class="flex justify-end gap-3">
+                        <button class="bg-slate-300 p-2 rounded hover:bg-sky-700 hover:text-white">Cancelar</button>
+                        <button class="bg-slate-300 p-2 rounded hover:bg-sky-700 hover:text-white">Agregar</button>
                     </li>
                 </ul>
             </form>
