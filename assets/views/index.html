@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,58 +35,61 @@
             </ul>
         </nav>
     </header>
-    <main class="flex flex-col items-center bg-slate-100 gap-6">
-        <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 mt-20 p-5 lg:w-80">
-            <h2 class="pt-3 pb-14 text-3xl font-bold text-slate-700">Balance</h2>
-            <div class="flex justify-between pb-6 text-slate-700">
-                <h4 class="text-xl">Ganancias</h4>
-                <p class="text-green-500">+$0</p>
+    <main class="flex flex-col items-center bg-slate-100 gap-6 lg:flex lg:flex-row lg:justify-center lg:pb-10"">
+        <section class="flex flex-col items-center lg:w-4/12">
+            <div class="flex flex-col bg-white shadow-lg rounded-md w-10/12 mt-20 mb-5 p-5 lg:w-80">
+                <h2 class="pt-3 pb-14 text-3xl font-bold text-slate-700">Balance</h2>
+                <div class="flex justify-between pb-6 text-slate-700">
+                    <h4 class="text-xl">Ganancias</h4>
+                    <p class="text-green-500">+$0</p>
+                </div>
+                <div class="flex justify-between pb-6 text-slate-700">
+                    <h4 class="text-xl">Gastos</h4>
+                    <p class="text-red-500">-$0</p>
+                </div>
+                <div class="flex justify-between text-slate-700">
+                    <h3 class="text-2xl">Total</h3>
+                    <p class="font-semibold">$0</p>
+                </div>
             </div>
-            <div class="flex justify-between pb-6 text-slate-700">
-                <h4 class="text-xl">Gastos</h4>
-                <p class="text-red-500">-$0</p>
-            </div>
-            <div class="flex justify-between text-slate-700">
-                <h3 class="text-2xl">Total</h3>
-                <p class="font-semibold">$0</p>
+
+            <div class="flex flex-col bg-white shadow-lg rounded-md w-10/12 lg:w-80">
+                <div class="flex justify-between items-center p-5 text-blue-500">
+                    <h2 class="text-2xl font-bold text-slate-700">Filtros</h2>
+                    <label>Ocultar filtros</label>
+                </div>
+                <form class="p-5 gap-6 w-full">
+                    <label for="tipo" class="font-bold">Tipo</label>
+                    <select name="tipo" id="tipo" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
+                        <option value="todos">Todos</option>
+                        <option value="gasto">Gasto</option>
+                        <option value="ganancia">Ganancia</option>
+                    </select>
+                    <label for="categoria" class="font-bold">Categoria</label>
+                    <select name="categoria" id="categoria" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
+                        <option value="todas">Todas</option>
+                        <option value="comida">Comida</option>
+                        <option value="servicios">Servicios</option>
+                        <option value="salidas">Salidas</option>
+                        <option value="educacion">Educación</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="trabajo">Trabajo</option>
+                    </select>
+                    <label for="desde" class="font-bold">Desde</label>
+                    <input type="date" name="desde" id="desde" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
+                    <label for="ordenarPor" class="font-bold">Ordenar por</label>
+                    <select name="ordenarPor" id="ordenarPor" class="w-full mt-3 p-2 border-2 border-solid border-grey-500 rounded-md">
+                        <option value="masReciente">Más reciente</option>
+                        <option value="menosReciente">Menos reciente</option>
+                        <option value="mayorMonto">Mayor monto</option>
+                        <option value="menorMonto">Menor monto</option>
+                        <option value="aZ">A/Z</option>
+                        <option value="zA">Z/A</option>
+                    </select>
+                </form>
             </div>
         </section>
-        <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 lg:w-80">
-            <div class="flex justify-between items-center p-5 text-blue-500">
-                <h2 class="text-2xl font-bold text-slate-700">Filtros</h2>
-                <label>Ocultar filtros</label>
-            </div>
-            <form class="p-5 gap-6 w-full">
-                <label for="tipo" class="font-bold">Tipo</label>
-                <select name="tipo" id="tipo" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
-                    <option value="todos">Todos</option>
-                    <option value="gasto">Gasto</option>
-                    <option value="ganancia">Ganancia</option>
-                </select>
-                <label for="categoria" class="font-bold">Categoria</label>
-                <select name="categoria" id="categoria" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
-                    <option value="todas">Todas</option>
-                    <option value="comida">Comida</option>
-                    <option value="servicios">Servicios</option>
-                    <option value="salidas">Salidas</option>
-                    <option value="educacion">Educación</option>
-                    <option value="transporte">Transporte</option>
-                    <option value="trabajo">Trabajo</option>
-                </select>
-                <label for="desde" class="font-bold">Desde</label>
-                <input type="date" name="desde" id="desde" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
-                <label for="ordenarPor" class="font-bold">Ordenar por</label>
-                <select name="ordenarPor" id="ordenarPor" class="w-full mt-3 p-2 border-2 border-solid border-grey-500 rounded-md">
-                    <option value="masReciente">Más reciente</option>
-                    <option value="menosReciente">Menos reciente</option>
-                    <option value="mayorMonto">Mayor monto</option>
-                    <option value="menorMonto">Menor monto</option>
-                    <option value="aZ">A/Z</option>
-                    <option value="zA">Z/A</option>
-                </select>
-            </form>
-        </section>
-        <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5 lg:max-w-4xl">
+        <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5 lg:w-2/4">
             <div class="lg:flex justify-between">
                 <h2 class="text-2xl font-bold text-slate-700 mb-7">Operaciones</h2>
                 <button class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md">+ Nueva operación</button>
@@ -236,14 +239,6 @@
                     <button class="flex justify-center w-1/4 text-xs text-blue-700 p-1">Eliminar</button>
                 </div>
             </div>
-        </section>
-        <section>
-            <h2>Reportes</h2>
-            <picture>
-                <img src="/assets/reportes.svg" alt="Reportes">
-            </picture>
-            <h3>Operaciones insuficientes</h3>
-            <p>Prueba agregando más operaciones</p>
         </section>
     </main>
 </body>
