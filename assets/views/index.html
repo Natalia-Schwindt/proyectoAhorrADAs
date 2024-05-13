@@ -36,7 +36,7 @@
         </nav>
     </header>
     <main class="flex flex-col items-center bg-slate-100 gap-6 lg:flex lg:flex-row lg:justify-center lg:pb-10"">
-        <section class="flex flex-col items-center lg:w-4/12">
+        <section id="balanceFiltros" class="flex flex-col items-center lg:w-4/12">
             <div class="flex flex-col bg-white shadow-lg rounded-md w-10/12 mt-20 mb-5 p-5 lg:w-80">
                 <h2 class="pt-3 pb-14 text-3xl font-bold text-slate-700">Balance</h2>
                 <div class="flex justify-between pb-6 text-slate-700">
@@ -89,10 +89,10 @@
                 </form>
             </div>
         </section>
-        <section class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5 lg:w-2/4">
+        <section id="operaciones" class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5 lg:w-2/4">
             <div class="lg:flex justify-between">
                 <h2 class="text-2xl font-bold text-slate-700 mb-7">Operaciones</h2>
-                <button class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md">+ Nueva operación</button>
+                <button class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md" id="botonNuevaOperacion">+ Nueva operación</button>
             </div>
             <figure class="w-full mb-8 lg:flex justify-center">
                 <img src="/assets/billetera.svg" alt="Billetera" class="lg:max-w-md">
@@ -102,7 +102,7 @@
                 <p class="text-base text-center text-slate-600">Cambia los filtros o agrega operaciones</p>
             </div>
         </section>
-        <section class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12 lg:w-3/4 xl:w-6/12 hidden">
+        <section id="ventanaNuevaOperacion" class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12 lg:w-3/4 xl:w-6/12 lg:my-40 hidden">
             <h2 class="text-3xl font-bold text-gray-800">Nueva operación</h2>
             <form class="">
                 <ul class="flex flex-col gap-6">
@@ -184,8 +184,7 @@
                 </ul>
             </form>
         </section>
-        
-<!--         <section  class="flex flex-col bg-white shadow-lg rounded-md w-10/12 mt-20 p-5"> -->
     </main>
+    <script src="../script/app.js"></script>
 </body>
 </html>
