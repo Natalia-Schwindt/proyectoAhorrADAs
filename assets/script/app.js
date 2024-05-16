@@ -1,38 +1,37 @@
 const categoriasSelect = document.getElementById("categoriaSelect")
 
-function cargarCategorias(categorias) {
+const cargarCategorias = (categorias) => {
     categorias.forEach((categoria) => {
-        let nuevaCategoria = document.createElement("option")
+        let nuevaCategoria = document.createElement("option");
         nuevaCategoria.value = categoria;
-        nuevaCategoria.textContent = categoria
-        categoriasSelect.appendChild(nuevaCategoria)
+        nuevaCategoria.textContent = categoria;
+        categoriasSelect.appendChild(nuevaCategoria);
     })
 }
 
 const cargarStorage = () => {
-    const categorias = localStorage.getItem("categorias")
-    const operaciones = localStorage.getItem("operaciones")
-    console.log(operaciones)
+    const categorias = localStorage.getItem("categorias");
+    const operaciones = localStorage.getItem("operaciones");
     if (!categorias) {
-        const categoriasDefault = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"]
-        localStorage.setItem("categorias", categoriasDefault)
-        cargarCategorias(categoriasDefault)
+        const categoriasDefault = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
+        localStorage.setItem("categorias", categoriasDefault);
+        cargarCategorias(categoriasDefault);
     } else {
-        let nuevaCategoria = ""
-        let nuevasCategoriasArray = []
+        let nuevaCategoria = "";
+        let nuevasCategoriasArray = [];
         for (let i = 0; i < categorias.length; i++) {
             if (categorias[i] !== ",") {
-                nuevaCategoria += categorias[i]
+                nuevaCategoria += categorias[i];
                 if (i === categorias.length - 1) {
                     nuevasCategoriasArray.push(nuevaCategoria)
                 }
             } else {
-                nuevasCategoriasArray.push(nuevaCategoria)
-                nuevaCategoria = ""
+                nuevasCategoriasArray.push(nuevaCategoria);
+                nuevaCategoria = "";
             }
         }
-        cargarCategorias(nuevasCategoriasArray)
-    }
+        cargarCategorias(nuevasCategoriasArray);
+    };
 }
 
 cargarStorage()
