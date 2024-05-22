@@ -170,10 +170,10 @@ function crearOperacion() {
 };
 
 function eliminar_operacion(){
-    indice = this.dataset.indice
-    operaciones_array.splice(indice, 1)
-    localStorage.setItem("operaciones", JSON.stringify(operaciones_array))
-    crearTabla(operaciones_array)
+    indice = this.dataset.indice;
+    operaciones_array.splice(indice, 1);
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
+    crearTabla(operaciones_array);
 };
 
 const formNuevaOperacion = document.getElementById("formNuevaOperacion");
