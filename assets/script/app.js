@@ -1,4 +1,4 @@
-const categoriasSelect = document.getElementById("categoriaSelect")
+const categoriasSelect = document.getElementById("categoria");
 let operaciones_array = [];
 
 function cargarCategorias(categorias) {
@@ -12,7 +12,7 @@ function cargarCategorias(categorias) {
 
 function cargarStorage() {
     const categorias = localStorage.getItem("categorias");
-    const operaciones = localStorage.getItem("operaciones");
+    // const operaciones = localStorage.getItem("operaciones");
     if (!categorias) {
         const categoriasDefault = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
         localStorage.setItem("categorias", categoriasDefault);
@@ -44,16 +44,16 @@ botonNavHamburguesa.addEventListener('click', () => {
     ulNavHeader.classList.toggle('hidden');
 });
 
-const ocultarFiltros = document.getElementById('ocultarFiltros');
-const formFiltros = document.getElementById('formFiltros');
+const ocultarFiltros = document.getElementById('ocultar-filtros');
+const formFiltros = document.getElementById('form-filtros');
 
 ocultarFiltros.addEventListener('click', () => {
     formFiltros.classList.toggle('hidden');
 });
 
-const nuevaOperacion = document.getElementById('botonNuevaOperacion');
-const ventanaNuevaOperacion = document.getElementById('ventanaNuevaOperacion');
-const balanceFiltros = document.getElementById('balanceFiltros');
+const nuevaOperacion = document.getElementById('boton-nueva-operacion');
+const ventanaNuevaOperacion = document.getElementById('ventanaNueva-operacion');
+const balanceFiltros = document.getElementById('balance-filtros');
 const operaciones = document.getElementById('operaciones');
 
 nuevaOperacion.addEventListener('click', () => {
@@ -63,20 +63,20 @@ nuevaOperacion.addEventListener('click', () => {
 });
 
 /* Funciones para cargar y listar Nueva Operacion */
+const tableListadoBalance = document.getElementById('table-listado-balance');
 const descripcionNuevaOperacion = document.getElementById("nuevaOperacion-descripcion");
 const montoNuevaOperacion = document.getElementById("nuevaOperacion-monto");
 const tipoNuevaOperacion = document.getElementById("nuevaOperacion-tipo");
 const categoriaNuevaOperacion = document.getElementById("nuevaOperacion-categoria");
 const fechaNuevaOperacion = document.getElementById("nuevaOperacion-fecha");
 
-// Pasa a objeto y carga datos
-const cancelarOperacion = document.getElementById("cancelarOperacion")
+const cancelarOperacion = document.getElementById("cancelar-operacion");
 const figure = document.getElementById('figure');
-const imagenIndex = document.getElementById('imagenIndex');
-const tituloParrafoOperaciones = document.getElementById('tituloParrafoOperaciones');
+const imagenIndex = document.getElementById('imagen-index');
+const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaciones');
 
-const tableListadoBalance = document.getElementById('table-listado-balance');
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
+
 function crearFila(operacion, index){
     // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
@@ -103,20 +103,16 @@ function crearFila(operacion, index){
     columnaBotones.style.display = 'flex';
     columnaBotones.style.justifyContent = 'space-evenly';
     fila.appendChild(columnaBotones);
-    // Editar
+    // Boton Editar
     let columnaEditar = document.createElement('button');
     columnaEditar.textContent = 'Editar';
     columnaBotones.appendChild(columnaEditar);
-
-    columnaEditar.addEventListener('click', ()=> {
-        seccionEditarOperacion.style.display = 'flex';
-        operaciones.style.display = 'none';
-        balanceFiltros.style.display = 'none';
-    });
-
-    // Eliminar
+    // Evento Mostar Formulario Editar
+    columnaEditar.dataset.indice = index;
+    columnaEditar.onclick = editar_operacion;
+    // Boton Eliminar
     let columnaEliminar = document.createElement('button');
-    columnaEliminar.dataset.indice = index
+    columnaEliminar.dataset.indice = index;
     columnaEliminar.onclick = eliminar_operacion;
     columnaEliminar.textContent = 'Eliminar';
     columnaBotones.appendChild(columnaEliminar);
@@ -169,6 +165,31 @@ function crearOperacion() {
     crearTabla(operaciones_array);
 };
 
+let editarDescripcion = document.getElementById('editar-descripcion');
+let editarMonto = document.getElementById('editar-monto');
+let editarTipo = document.getElementById('editar-tipo');
+let editarCategoria = document.getElementById('editar-categoria');
+let editarFecha = document.getElementById('editar-fecha');
+let indiceInput = document.getElementById("indice-input")
+
+function editar_operacion(){
+    seccionEditarOperacion.style.display = 'flex';
+    operaciones.style.display = 'none';
+    balanceFiltros.style.display = 'none';
+    indice = this.dataset.indice;
+
+    indiceInput.value = indice;
+    operacion = operaciones_array[indice];
+    editarDescripcion.value = operacion.descripcion;
+    editarMonto.value = operacion.monto;
+    editarTipo.value = operacion.tipo;
+    editarCategoria.value = operacion.categoria;
+    editarFecha.value = operacion.fecha;
+
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
+    crearTabla(operaciones_array);
+};
+
 function eliminar_operacion(){
     indice = this.dataset.indice;
     operaciones_array.splice(indice, 1);
@@ -176,8 +197,9 @@ function eliminar_operacion(){
     crearTabla(operaciones_array);
 };
 
-const formNuevaOperacion = document.getElementById("formNuevaOperacion");
-let listaNuevaOperacion = document.getElementById('listaNuevaOperacion');
+const formNuevaOperacion = document.getElementById("form-nueva-operacion");
+const formularioEditar = document.getElementById("formulario-editar");
+let listaNuevaOperacion = document.getElementById('lista-nueva-operacion');
 
 formNuevaOperacion.addEventListener("submit", function (event) {
     console.log(event);
@@ -194,7 +216,29 @@ cancelarOperacion.addEventListener('click', ()=>{
     ventanaNuevaOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
     balanceFiltros.style.display = 'flex';
-    // tableListadoBalance.style.display = 'none';
+});
+
+formularioEditar.addEventListener("submit", function (event) {
+    console.log(event);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
+    indice = indiceInput.value;
+    operacion = operaciones_array[indice];
+
+    operacion.descripcion = editarDescripcion.value;
+    operacion.monto = editarMonto.value;
+    operacion.tipo = editarTipo.value;
+    operacion.categoria = editarCategoria.value;
+    operacion.fecha = editarFecha.value;
+
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
+    crearTabla(operaciones_array);
+
+    seccionEditarOperacion.style.display = 'none';
+    operaciones.style.display = 'flex';
+    balanceFiltros.style.display = 'flex';
 });
 
 // cargar datos al iniciar pagina
@@ -204,7 +248,7 @@ cargarDatos();
 const filtroTipo = document.getElementById('tipo');
 const filtroCategoria = document.getElementById('categoria');
 const filtroDesde = document.getElementById('desde');
-const filtroOrdenarPor = document.getElementById('ordenarPor');
+const filtroOrdenarPor = document.getElementById('ordenar-por');
 
 //Filtro por tipo, categoría y fecha
 function filtrarOperaciones() {
