@@ -96,16 +96,15 @@
                 <h2 class="text-2xl font-bold text-slate-700 mb-7">Operaciones</h2>
                 <button class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md" id="botonNuevaOperacion">+ Nueva operación</button>
             </div>
-            <figure class="w-full mb-8 lg:flex justify-center">
-                <img src="/assets/billetera.svg" alt="Billetera" class="lg:max-w-md">
+            <figure id="figure" class="w-full mb-8 lg:flex justify-center">
+                <img id="imagenIndex" src="../billetera.svg" alt="Billetera" class="lg:max-w-md">
             </figure>
-            <div class="flex flex-col items-center pb-20">
+            <div id="tituloParrafoOperaciones" class="flex flex-col items-center pb-20">
                 <h2 class="text-2xl text-slate-700 mb-5">Sin resultados</h2>
                 <p class="text-base text-center text-slate-600">Cambia los filtros o agrega operaciones</p>
             </div>
-            <!-- Tabla listado de operaciones (index Balance)-->
-            <table class="table-auto" id="tableListadoBalance">
-                <thead>
+            <table class="table-auto">
+                <thead class="hidden" id="table-listado-balance">
                   <tr>
                     <th>Descripción</th>
                     <th>Categoria</th>
@@ -116,42 +115,44 @@
                 </thead>
                 <tbody id="listaNuevaOperacion">
                 </tbody>
-            </table>
+              </table>
         </section>
         <!-- Formulario Agregar Nueva Operacion (pantalla index Balance) -->
         <section id="ventanaNuevaOperacion" class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12 lg:w-3/4 xl:w-6/12 lg:my-40 hidden">
             <h2 class="text-3xl font-bold text-gray-800">Nueva operación</h2>
-            <form class="">
+            <form id="formNuevaOperacion">
                 <ul class="flex flex-col gap-6">
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Descripción</label>
-                        <input type="text" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                        <input id="nuevaOperacion-descripcion" type="text" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Monto</label>
-                        <input type="number" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                        <input id="nuevaOperacion-monto" type="number" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Tipo</label>
-                        <select name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                        <select id="nuevaOperacion-tipo" name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                            <option selected disabled>Seleccione una opcion</option>
                             <option value="gasto">Gasto</option>
-                            <option value="ganancia" selected>Ganancia</option>
+                            <option value="ganancia" >Ganancia</option>
                         </select>
                     </li>
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Categoría</label>
-                        <select name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                        <select id="nuevaOperacion-categoria" name="select" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                            <option selected disabled>Seleccione una opcion</option>
                             <option value="comida">Comida</option>
-                            <option value="servicio" selected>Servicios</option>
-                            <option value="salida" selected>Salidas</option>
-                            <option value="educacion" selected>Educación</option>
-                            <option value="transporte" selected>Transporte</option>
-                            <option value="trabajo" selected>Trabajo</option>
+                            <option value="servicio" >Servicios</option>
+                            <option value="salida" >Salidas</option>
+                            <option value="educacion" >Educación</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="trabajo" >Trabajo</option>
                         </select>
                     </li>
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Fecha</label>
-                        <input type="date" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
+                        <input id="nuevaOperacion-fecha" type="date" class="border border-sky-500 rounded border-slate-300 focus-visible:outline-0 focus-visible:border-blue-500 focus-visible:shadow focus-visible:shadow-blue-500">
                     </li>
                     <li class="flex justify-end gap-3">
                         <button type="button" id="cancelarOperacion" class="bg-slate-300 p-2 rounded hover:bg-sky-700 hover:text-white">Cancelar</button>
@@ -161,9 +162,9 @@
             </form>
         </section>
         <!-- Formulario Editar Operacion -->
-        <section class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12 lg:w-3/4 xl:w-6/12 hidden">
+        <section id="seccion-editar-operacion" class="flex flex-col bg-white shadow-lg rounded-md p-5 gap-6 w-10/12 lg:w-3/4 xl:w-6/12 hidden">
             <h2 class="text-3xl font-bold text-gray-800">Editar operación</h2>
-            <form class="">
+            <form>
                 <ul class="flex flex-col gap-6">
                     <li class="flex flex-col gap-2">
                         <label class="font-bold text-gray-800">Descripción</label>

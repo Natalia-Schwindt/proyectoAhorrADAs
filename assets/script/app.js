@@ -1,15 +1,16 @@
 const categoriasSelect = document.getElementById("categoriaSelect")
+let operaciones_array = [];
 
-const cargarCategorias = (categorias) => {
+function cargarCategorias(categorias) {
     categorias.forEach((categoria) => {
         let nuevaCategoria = document.createElement("option");
         nuevaCategoria.value = categoria;
         nuevaCategoria.textContent = categoria;
         categoriasSelect.appendChild(nuevaCategoria);
-    })
-}
+    });
+};
 
-const cargarStorage = () => {
+function cargarStorage() {
     const categorias = localStorage.getItem("categorias");
     const operaciones = localStorage.getItem("operaciones");
     if (!categorias) {
@@ -23,7 +24,7 @@ const cargarStorage = () => {
             if (categorias[i] !== ",") {
                 nuevaCategoria += categorias[i];
                 if (i === categorias.length - 1) {
-                    nuevasCategoriasArray.push(nuevaCategoria)
+                    nuevasCategoriasArray.push(nuevaCategoria);
                 }
             } else {
                 nuevasCategoriasArray.push(nuevaCategoria);
@@ -32,9 +33,9 @@ const cargarStorage = () => {
         }
         cargarCategorias(nuevasCategoriasArray);
     };
-}
+};
 
-cargarStorage()
+cargarStorage();
 
 const botonNavHamburguesa = document.getElementById('boton-nav-hamburguesa');
 const ulNavHeader = document.getElementById('ul-nav-header');
@@ -69,39 +70,59 @@ const categoriaNuevaOperacion = document.getElementById("nuevaOperacion-categori
 const fechaNuevaOperacion = document.getElementById("nuevaOperacion-fecha");
 
 // Pasa a objeto y carga datos
-const tableListadoBalance = document.getElementById('tableListadoBalance');
-
 const cancelarOperacion = document.getElementById("cancelarOperacion")
 const figure = document.getElementById('figure');
 const imagenIndex = document.getElementById('imagenIndex');
 const tituloParrafoOperaciones = document.getElementById('tituloParrafoOperaciones');
 
+const tableListadoBalance = document.getElementById('table-listado-balance');
+const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 function crearFila(operacion, index){
     // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
     fila.style.width = '100%'; 
     let columnaDescripcion = document.createElement('td');
     columnaDescripcion.textContent = operacion.descripcion;
+    columnaDescripcion.style.textAlign = 'center';
     fila.appendChild(columnaDescripcion);
     let columnaCategoria = document.createElement('td');
     columnaCategoria.textContent = operacion.categoria;
+    columnaCategoria.style.textAlign = 'center';
     fila.appendChild(columnaCategoria);
     let columnaFecha = document.createElement('td');
     columnaFecha.textContent = operacion.fecha;
+    columnaFecha.style.textAlign = 'center';
     fila.appendChild(columnaFecha);
     let columnaMonto = document.createElement('td');
     columnaMonto.textContent = operacion.monto;
+    columnaMonto.style.textAlign = 'center';
     fila.appendChild(columnaMonto);
+    // Td para los botones
+    let columnaBotones = document.createElement('td');
+    columnaBotones.style.textAlign = 'center';
+    columnaBotones.style.display = 'flex';
+    columnaBotones.style.justifyContent = 'space-evenly';
+    fila.appendChild(columnaBotones);
+    // Editar
     let columnaEditar = document.createElement('button');
     columnaEditar.textContent = 'Editar';
-    fila.appendChild(columnaEditar);
+    columnaBotones.appendChild(columnaEditar);
+
+    columnaEditar.addEventListener('click', ()=> {
+        seccionEditarOperacion.style.display = 'flex';
+        operaciones.style.display = 'none';
+        balanceFiltros.style.display = 'none';
+    });
+
+    // Eliminar
     let columnaEliminar = document.createElement('button');
     columnaEliminar.dataset.indice = index
     columnaEliminar.onclick = eliminar_operacion;
     columnaEliminar.textContent = 'Eliminar';
-    fila.appendChild(columnaEliminar);
+    columnaBotones.appendChild(columnaEliminar);
+
     listaNuevaOperacion.appendChild(fila);
-}
+};
 
 function crearTabla(operaciones){
     listaNuevaOperacion.innerHTML = ''
@@ -109,24 +130,28 @@ function crearTabla(operaciones){
         imagenIndex.style.display = 'none';
         tituloParrafoOperaciones.style.display = 'none';
         figure.style.display = 'none';
-        
+        tableListadoBalance.style.display = 'table-header-group';
     } else {
         imagenIndex.style.display = 'flex';
         tituloParrafoOperaciones.style.display = 'flex';
         figure.style.display = 'flex';
+        tableListadoBalance.style.display = 'none';
         
         operaciones = [];
-    }
+    };
     operaciones.forEach((op, index) => {
         crearFila(op, index);
     });
-}
+};
 
 function cargarDatos(){
     operaciones_json = localStorage.getItem("operaciones");
     operaciones_array = JSON.parse(operaciones_json);
-    crearTabla(operaciones_array)
-}
+    if (operaciones_array===null){
+        operaciones_array=[];
+    }
+    crearTabla(operaciones_array);
+};
 
 // Crea cada operacion del form de 'nueva operacion' de balance
 function crearOperacion() {
@@ -137,32 +162,40 @@ function crearOperacion() {
         tipo: tipoNuevaOperacion.value,
         categoria: categoriaNuevaOperacion.value,
         fecha: fechaNuevaOperacion.value
-    }
+    };
 
-    operaciones_array.push(nuevaOperacion)
+    operaciones_array.push(nuevaOperacion);
+    localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
+    crearTabla(operaciones_array);
+};
+
+function eliminar_operacion(){
+    indice = this.dataset.indice
+    operaciones_array.splice(indice, 1)
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array))
     crearTabla(operaciones_array)
-}
+};
 
-const formMolesto = document.getElementById("formNuevaOperacion")
+const formNuevaOperacion = document.getElementById("formNuevaOperacion");
 let listaNuevaOperacion = document.getElementById('listaNuevaOperacion');
 
-formMolesto.addEventListener("submit", function (event) {
-    console.log(event)
-    event.preventDefault()
-    event.stopImmediatePropagation()
-    event.stopPropagation()
-    crearOperacion()
+formNuevaOperacion.addEventListener("submit", function (event) {
+    console.log(event);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+    crearOperacion();
     ventanaNuevaOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
     balanceFiltros.style.display = 'flex';
-})
+});
 
 cancelarOperacion.addEventListener('click', ()=>{
     ventanaNuevaOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
     balanceFiltros.style.display = 'flex';
-})
+    // tableListadoBalance.style.display = 'none';
+});
 
 // cargar datos al iniciar pagina
 cargarDatos();
