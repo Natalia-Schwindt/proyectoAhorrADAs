@@ -199,3 +199,23 @@ cancelarOperacion.addEventListener('click', ()=>{
 
 // cargar datos al iniciar pagina
 cargarDatos();
+
+//Filtros
+const filtroTipo = document.getElementById('tipo');
+
+//Filtro por gasto
+function filtrarOperaciones() {
+    const tipo = filtroTipo.value;
+    
+    let operacionesFiltradas = operaciones_array;
+
+    if (tipo !== 'todos') {
+        operacionesFiltradas = operacionesFiltradas.filter(op => op.tipo === tipo);
+    }
+
+    crearTabla(operacionesFiltradas);
+}
+
+filtroTipo.addEventListener('change', filtrarOperaciones);
+
+cargarDatos();
