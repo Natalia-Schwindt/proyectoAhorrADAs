@@ -202,10 +202,12 @@ cargarDatos();
 
 //Filtros
 const filtroTipo = document.getElementById('tipo');
+const filtroCategoria = document.getElementById('categoriaSelect');
 
 //Filtro por tipo
 function filtrarOperaciones() {
     const tipo = filtroTipo.value;
+    const categoria = filtroCategoria.value;
     
     let operacionesFiltradas = operaciones_array;
 
@@ -213,9 +215,14 @@ function filtrarOperaciones() {
         operacionesFiltradas = operacionesFiltradas.filter(op => op.tipo === tipo);
     }
 
+    if (categoria !== 'todas') {
+        operacionesFiltradas = operacionesFiltradas.filter(op => op.categoria === categoria);
+    }
+
     crearTabla(operacionesFiltradas);
 }
 
 filtroTipo.addEventListener('change', filtrarOperaciones);
+filtroCategoria.addEventListener('change', filtrarOperaciones);
 
 cargarDatos();
