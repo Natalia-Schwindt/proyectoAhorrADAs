@@ -204,12 +204,14 @@ cargarDatos();
 const filtroTipo = document.getElementById('tipo');
 const filtroCategoria = document.getElementById('categoria');
 const filtroDesde = document.getElementById('desde');
+const filtroOrdenarPor = document.getElementById('ordenarPor');
 
 //Filtro por tipo, categoría y fecha
 function filtrarOperaciones() {
     const tipo = filtroTipo.value;
     const categoria = filtroCategoria.value;
     const desde = filtroDesde.value;
+    const ordenarPor = filtroOrdenarPor.value;
     
     let operacionesFiltradas = operaciones_array;
 
@@ -225,11 +227,33 @@ function filtrarOperaciones() {
         operacionesFiltradas = operacionesFiltradas.filter(op => new Date(op.fecha) >= new Date(desde));
     }
 
+    switch (ordenarPor) {
+        case 'masReciente':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => new Date(segundaOp.fecha) - new Date(primeraOp.fecha));
+            break;
+        case 'menosReciente':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => new Date(primeraOp.fecha) - new Date(segundaOp.fecha));
+            break;
+        case 'mayorMonto':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => segundaOp.monto - primeraOp.monto);
+            break;
+        case 'menorMonto':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => primeraOp.monto - segundaOp.monto);
+            break;
+        case 'aZ':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => primeraOp.descripcion.localeCompare(segundaOp.descripcion));
+            break;
+        case 'zA':
+            operacionesFiltradas.sort((primeraOp, segundaOp) => segundaOp.descripcion.localeCompare(primeraOp.descripcion));
+            break;
+    }
+
     crearTabla(operacionesFiltradas);
 }
 
 filtroTipo.addEventListener('change', filtrarOperaciones);
 filtroCategoria.addEventListener('change', filtrarOperaciones);
 filtroDesde.addEventListener('change', filtrarOperaciones);
+filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
 cargarDatos();
