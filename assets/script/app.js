@@ -202,10 +202,14 @@ cargarDatos();
 
 //Filtros
 const filtroTipo = document.getElementById('tipo');
+const filtroCategoria = document.getElementById('categoria');
+const filtroDesde = document.getElementById('desde');
 
-//Filtro por tipo
+//Filtro por tipo, categoría y fecha
 function filtrarOperaciones() {
     const tipo = filtroTipo.value;
+    const categoria = filtroCategoria.value;
+    const desde = filtroDesde.value;
     
     let operacionesFiltradas = operaciones_array;
 
@@ -213,9 +217,19 @@ function filtrarOperaciones() {
         operacionesFiltradas = operacionesFiltradas.filter(op => op.tipo === tipo);
     }
 
+    if (categoria !== 'todas') {
+        operacionesFiltradas = operacionesFiltradas.filter(op => op.categoria === categoria);
+    }
+
+    if (desde) {
+        operacionesFiltradas = operacionesFiltradas.filter(op => new Date(op.fecha) >= new Date(desde));
+    }
+
     crearTabla(operacionesFiltradas);
 }
 
 filtroTipo.addEventListener('change', filtrarOperaciones);
+filtroCategoria.addEventListener('change', filtrarOperaciones);
+filtroDesde.addEventListener('change', filtrarOperaciones);
 
 cargarDatos();
