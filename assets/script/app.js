@@ -11,28 +11,14 @@ function cargarCategorias(categorias) {
 };
 
 function cargarStorage() {
-    const categorias = localStorage.getItem("categorias");
-    // const operaciones = localStorage.getItem("operaciones");
-    if (!categorias) {
-        const categoriasDefault = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
-        localStorage.setItem("categorias", categoriasDefault);
-        cargarCategorias(categoriasDefault);
+    categorias_storage = localStorage.getItem("categorias");
+    if (!categorias_storage) {
+        categorias_array = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
+        localStorage.setItem("categorias", categorias_array);
     } else {
-        let nuevaCategoria = "";
-        let nuevasCategoriasArray = [];
-        for (let i = 0; i < categorias.length; i++) {
-            if (categorias[i] !== ",") {
-                nuevaCategoria += categorias[i];
-                if (i === categorias.length - 1) {
-                    nuevasCategoriasArray.push(nuevaCategoria);
-                }
-            } else {
-                nuevasCategoriasArray.push(nuevaCategoria);
-                nuevaCategoria = "";
-            }
-        }
-        cargarCategorias(nuevasCategoriasArray);
-    };
+        categorias_array = categorias_storage.split(',')
+    }
+    cargarCategorias(categorias_array);
 };
 
 cargarStorage();
@@ -77,7 +63,7 @@ const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaci
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
-function crearFila(operacion, index){
+function crearFila(operacion, indice){
     // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
     fila.style.width = '100%'; 
@@ -108,11 +94,11 @@ function crearFila(operacion, index){
     columnaEditar.textContent = 'Editar';
     columnaBotones.appendChild(columnaEditar);
     // Evento Mostar Formulario Editar
-    columnaEditar.dataset.indice = index;
+    columnaEditar.dataset.indice = indice;
     columnaEditar.onclick = editar_operacion;
     // Boton Eliminar
     let columnaEliminar = document.createElement('button');
-    columnaEliminar.dataset.indice = index;
+    columnaEliminar.dataset.indice = indice;
     columnaEliminar.onclick = eliminar_operacion;
     columnaEliminar.textContent = 'Eliminar';
     columnaBotones.appendChild(columnaEliminar);
@@ -121,7 +107,7 @@ function crearFila(operacion, index){
 };
 
 function crearTabla(operaciones){
-    listaNuevaOperacion.innerHTML = ''
+    listaNuevaOperacion.innerHTML = '';
     if (operaciones && operaciones.length > 0) {
         imagenIndex.style.display = 'none';
         tituloParrafoOperaciones.style.display = 'none';
@@ -140,15 +126,6 @@ function crearTabla(operaciones){
     });
 };
 
-function cargarDatos(){
-    operaciones_json = localStorage.getItem("operaciones");
-    operaciones_array = JSON.parse(operaciones_json);
-    if (operaciones_array===null){
-        operaciones_array=[];
-    }
-    crearTabla(operaciones_array);
-};
-
 // Crea cada operacion del form de 'nueva operacion' de balance
 function crearOperacion() {
     // Objeto con los valores de cada opcion del form de nuevaOperacion
@@ -162,6 +139,15 @@ function crearOperacion() {
 
     operaciones_array.push(nuevaOperacion);
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
+    crearTabla(operaciones_array);
+};
+
+function cargarDatos(){
+    operaciones_json = localStorage.getItem("operaciones");
+    operaciones_array = JSON.parse(operaciones_json);
+    if (operaciones_array===null){
+        operaciones_array=[];
+    }
     crearTabla(operaciones_array);
 };
 
