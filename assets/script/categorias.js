@@ -9,14 +9,7 @@ botonNavHamburguesa.addEventListener('click', () => {
 
 const botonesEditar = document.querySelectorAll('.botonEditar');
 const categorias = document.getElementById('categorias');
-const editarCategoria = document.getElementById('editarCategoria');
 
-botonesEditar.forEach(botonEditar => {
-    botonEditar.addEventListener('click', () =>{
-        categorias.style.display = 'none';
-        editarCategoria.style.display = 'block';
-    });
-});
 // -------------------------------------------------------------------------------------------------
 const nombreNuevaCategoria = document.getElementById('nombre-nueva-categoria');
 const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-categoria');
@@ -35,8 +28,8 @@ function crearFila(categoria, indice){
 
     let botonEditarCategoria = document.createElement('button');
     botonEditarCategoria.textContent = 'Editar';
-    // botonEditarCategoria.dataset.indice = indice;
-    // botonEditarCategoria.onclick = editar_operacion;
+    botonEditarCategoria.dataset.indice = indice;
+    botonEditarCategoria.onclick = editar_operacion;
 
     let botonEliminarCategoria = document.createElement('button');
     botonEliminarCategoria.textContent = 'Eliminar';
@@ -81,6 +74,36 @@ function crearOperacion() {
     crearTabla(categorias_array);
 };
 
+const formularioEditarCategoria = document.getElementById('formulario-editar-categoria');
+const editarNombreNuevaCategoria = document.getElementById('editar-nombre-nueva-categoria');
+const editarCategoria = document.getElementById('editar-categoria');
+let indiceInputCategoria = document.getElementById("indice-input-categoria");
+
+function editar_operacion(){
+    categorias.style.display = 'none';
+    editarCategoria.style.display = 'block';
+    indice = this.dataset.indice;
+
+    indiceInputCategoria.value = indice;
+    categoria = categorias_array[indice];
+    editarNombreNuevaCategoria.value = categoria; //.descripcion 
+};
+
+formularioEditarCategoria.addEventListener("submit", function (event) {
+    console.log(event);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+
+    indice = indiceInputCategoria.value;
+    categorias_array[indice] = editarNombreNuevaCategoria.value;
+
+    localStorage.setItem("categorias", categorias_array);
+    categorias.style.display = 'block';
+    editarCategoria.style.display = 'none';
+    crearTabla(categorias_array);
+});
+
 function eliminar_operacion(){
     indice = this.dataset.indice;
     categorias_array.splice(indice, 1);
@@ -96,6 +119,11 @@ document.querySelector('#formulario-categoria').addEventListener("submit", funct
     crearOperacion();
 });
 
+const cancelarOperacion = document.getElementById('cancelar-operacion');
+cancelarOperacion.addEventListener('click', ()=>{
+    categorias.style.display = 'block';
+    editarCategoria.style.display = 'none';
+});
 
 // inicio app
 cargarDatos();

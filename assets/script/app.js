@@ -156,7 +156,7 @@ let editarMonto = document.getElementById('editar-monto');
 let editarTipo = document.getElementById('editar-tipo');
 let editarCategoria = document.getElementById('editar-categoria');
 let editarFecha = document.getElementById('editar-fecha');
-let indiceInput = document.getElementById("indice-input")
+let indiceInput = document.getElementById("indice-input");
 
 function editar_operacion(){
     seccionEditarOperacion.style.display = 'flex';
@@ -222,6 +222,14 @@ formularioEditar.addEventListener("submit", function (event) {
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
 
+    seccionEditarOperacion.style.display = 'none';
+    operaciones.style.display = 'flex';
+    balanceFiltros.style.display = 'flex';
+});
+
+const cancelarOperacionEditar = document.getElementById('cancelar-operacion-editar');
+cancelarOperacionEditar.addEventListener('click', ()=>{
+    ventanaNuevaOperacion.style.display = 'none';
     seccionEditarOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
     balanceFiltros.style.display = 'flex';
