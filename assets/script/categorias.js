@@ -84,7 +84,7 @@ function crearOperacion() {
 function eliminar_operacion(){
     indice = this.dataset.indice;
     categorias_array.splice(indice, 1);
-    localStorage.setItem("categorias", JSON.stringify(categorias_array));
+    localStorage.setItem("categorias", categorias_array);
     crearTabla(categorias_array);
 };
 
