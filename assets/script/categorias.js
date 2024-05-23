@@ -40,12 +40,11 @@ function crearFila(categoria, indice){
 
     let botonEliminarCategoria = document.createElement('button');
     botonEliminarCategoria.textContent = 'Eliminar';
-    // botonEliminarCategoria.dataset.indice = indice;
-    // botonEliminarCategoria.onclick = eliminar_operacion;
-
-    categoriaElemLi.appendChild(categoriaElemP)
-    categoriaElemLi.appendChild(botonEditarCategoria)
-    categoriaElemLi.appendChild(botonEliminarCategoria)
+    botonEliminarCategoria.dataset.indice = indice;
+    botonEliminarCategoria.onclick = eliminar_operacion;
+    categoriaElemLi.appendChild(categoriaElemP);
+    categoriaElemLi.appendChild(botonEditarCategoria);
+    categoriaElemLi.appendChild(botonEliminarCategoria);
 
     listaNuevaCategoria.appendChild(categoriaElemLi);
 
@@ -65,7 +64,7 @@ function cargarDatos(){
         categorias_array = ["Comida", "Servicios", "Salidas", "Educacion", "Transporte", "Trabajo"];
         localStorage.setItem("categorias", categorias_array);
     } else {
-        categorias_array = categorias_storage.split(',')
+        categorias_array = categorias_storage.split(',');
     }
 
     crearTabla(categorias_array);
@@ -75,10 +74,17 @@ function cargarDatos(){
 function crearOperacion() {
     // Objeto con los valores de cada opcion del form de nuevaOperacion
     let nuevaCategoria =  nombreNuevaCategoria.value
-    nombreNuevaCategoria.value = ''
+    nombreNuevaCategoria.value = '';
 
     categorias_array.push(nuevaCategoria);
     localStorage.setItem("categorias", categorias_array);
+    crearTabla(categorias_array);
+};
+
+function eliminar_operacion(){
+    indice = this.dataset.indice;
+    categorias_array.splice(indice, 1);
+    localStorage.setItem("categorias", JSON.stringify(categorias_array));
     crearTabla(categorias_array);
 };
 
@@ -92,4 +98,4 @@ document.querySelector('#formulario-categoria').addEventListener("submit", funct
 
 
 // inicio app
-cargarDatos()
+cargarDatos();
