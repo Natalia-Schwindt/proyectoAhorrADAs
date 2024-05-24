@@ -306,18 +306,20 @@ filtroCategoria.addEventListener('change', filtrarOperaciones);
 filtroDesde.addEventListener('change', filtrarOperaciones);
 filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
+cargarDatos();
+
+// Funciones total ganancias y gastos
 // Funciones Balance - ganancias y gastos
 let balanceGanancias = document.getElementById('balance-ganancias');
 let balanceGastos = document.getElementById('balance-gastos');
 let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
 
-
-
-
-cargarDatos();
-
-// Funciones total ganancias y gastos
-let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia")
+let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
 let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
 balanceGanancias.textContent = '+$ '+ sumaGanancia;
 balanceGanancias.style.color = 'green';
+
+let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
+let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
+balanceGastos.textContent = '-$ '+ sumaGastos;
+balanceGastos.style.color = 'red';
