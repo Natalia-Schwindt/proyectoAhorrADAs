@@ -80,8 +80,15 @@ function crearFila(operacion, indice){
     columnaFecha.style.textAlign = 'center';
     fila.appendChild(columnaFecha);
     let columnaMonto = document.createElement('td');
-    columnaMonto.textContent = operacion.monto;
     columnaMonto.style.textAlign = 'center';
+    console.log(operacion.tipo)
+    if(operacion.tipo == 'gasto'){
+        columnaMonto.textContent = '- ' +  operacion.monto;
+        columnaMonto.style.color = 'red';
+    } else {
+        columnaMonto.textContent = '+ ' +  operacion.monto;
+        columnaMonto.style.color = 'green';
+    }
     fila.appendChild(columnaMonto);
     // Td para los botones
     let columnaBotones = document.createElement('td');
@@ -150,6 +157,12 @@ function cargarDatos(){
     }
     crearTabla(operaciones_array);
 };
+
+// function cambiarColorTipoGanancia(){
+//     if(tipoNuevaOperacion.value == 'Gasto'){
+//         tipoNuevaOperacion.style.color = 'red';
+//     }
+// }
 
 let editarDescripcion = document.getElementById('editar-descripcion');
 let editarMonto = document.getElementById('editar-monto');
