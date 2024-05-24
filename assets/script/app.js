@@ -63,6 +63,11 @@ const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaci
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
+// ----------------------------
+// let balanceGanancias = document.getElementById('balance-ganancias');
+// let balanceGastos = document.getElementById('balance-gastos');
+// let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
+
 function crearFila(operacion, indice){
     // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
@@ -83,10 +88,10 @@ function crearFila(operacion, indice){
     columnaMonto.style.textAlign = 'center';
     console.log(operacion.tipo)
     if(operacion.tipo == 'gasto'){
-        columnaMonto.textContent = '- ' +  operacion.monto;
+        columnaMonto.textContent = '-$ ' +  operacion.monto;
         columnaMonto.style.color = 'red';
     } else {
-        columnaMonto.textContent = '+ ' +  operacion.monto;
+        columnaMonto.textContent = '+$ ' +  operacion.monto;
         columnaMonto.style.color = 'green';
     }
     fila.appendChild(columnaMonto);
@@ -157,12 +162,6 @@ function cargarDatos(){
     }
     crearTabla(operaciones_array);
 };
-
-// function cambiarColorTipoGanancia(){
-//     if(tipoNuevaOperacion.value == 'Gasto'){
-//         tipoNuevaOperacion.style.color = 'red';
-//     }
-// }
 
 let editarDescripcion = document.getElementById('editar-descripcion');
 let editarMonto = document.getElementById('editar-monto');
@@ -307,4 +306,18 @@ filtroCategoria.addEventListener('change', filtrarOperaciones);
 filtroDesde.addEventListener('change', filtrarOperaciones);
 filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
+// Funciones Balance - ganancias y gastos
+let balanceGanancias = document.getElementById('balance-ganancias');
+let balanceGastos = document.getElementById('balance-gastos');
+let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
+
+
+
+
 cargarDatos();
+
+// Funciones total ganancias y gastos
+let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia")
+let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
+balanceGanancias.textContent = '+$ '+ sumaGanancia;
+balanceGanancias.style.color = 'green';
