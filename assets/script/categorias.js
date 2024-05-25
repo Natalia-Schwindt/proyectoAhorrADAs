@@ -66,12 +66,14 @@ function cargarDatos(){
 // Crea cada operacion del form de 'nueva operacion' de balance
 function crearOperacion() {
     // Objeto con los valores de cada opcion del form de nuevaOperacion
-    let nuevaCategoria =  nombreNuevaCategoria.value
-    nombreNuevaCategoria.value = '';
-
-    categorias_array.push(nuevaCategoria);
-    localStorage.setItem("categorias", categorias_array);
-    crearTabla(categorias_array);
+    let nuevaCategoria = nombreNuevaCategoria.value.trim();
+    if (nuevaCategoria) {
+        nuevaCategoria = nuevaCategoria.charAt(0).toUpperCase() + nuevaCategoria.slice(1).toLowerCase();
+        nombreNuevaCategoria.value = '';
+        categorias_array.push(nuevaCategoria);
+        localStorage.setItem("categorias", categorias_array);
+        crearTabla(categorias_array);
+    }
 };
 
 const formularioEditarCategoria = document.getElementById('formulario-editar-categoria');
