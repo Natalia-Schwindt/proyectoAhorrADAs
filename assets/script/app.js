@@ -63,11 +63,6 @@ const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaci
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
-// ----------------------------
-// let balanceGanancias = document.getElementById('balance-ganancias');
-// let balanceGastos = document.getElementById('balance-gastos');
-// let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
-
 function crearFila(operacion, indice){
     // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
@@ -152,6 +147,7 @@ function crearOperacion() {
     operaciones_array.push(nuevaOperacion);
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
+    gananciaGasto();
 };
 
 function cargarDatos(){
@@ -161,6 +157,7 @@ function cargarDatos(){
         operaciones_array=[];
     }
     crearTabla(operaciones_array);
+    gananciaGasto();
 };
 
 let editarDescripcion = document.getElementById('editar-descripcion');
@@ -186,6 +183,7 @@ function editar_operacion(){
 
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
+    gananciaGasto();
 };
 
 function eliminar_operacion(){
@@ -193,6 +191,7 @@ function eliminar_operacion(){
     operaciones_array.splice(indice, 1);
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
+    gananciaGasto();
 };
 
 const formNuevaOperacion = document.getElementById("form-nueva-operacion");
@@ -233,6 +232,7 @@ formularioEditar.addEventListener("submit", function (event) {
 
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
+    gananciaGasto();
 
     seccionEditarOperacion.style.display = 'none';
     operaciones.style.display = 'flex';
@@ -306,20 +306,35 @@ filtroCategoria.addEventListener('change', filtrarOperaciones);
 filtroDesde.addEventListener('change', filtrarOperaciones);
 filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
+// Funcion Balance - ganancias y gastos
+
+function gananciaGasto(){
+    let balanceGanancias = document.getElementById('balance-ganancias');
+    let balanceGastos = document.getElementById('balance-gastos');
+    let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
+
+    let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
+    let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
+    balanceGanancias.textContent = '+$ '+ sumaGanancia;
+    balanceGanancias.style.color = 'green';
+
+    let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
+    let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
+    balanceGastos.textContent = '-$ '+ sumaGastos;
+    balanceGastos.style.color = 'red';
+
+    total = sumaGanancia - sumaGastos;
+
+    if (total > 0){
+        balanceTotalGananciasGastos.textContent = '+$' + total;
+        balanceTotalGananciasGastos.style.color = 'green';
+    } 
+    else{
+        balanceTotalGananciasGastos.textContent = '-$' + total;
+        balanceTotalGananciasGastos.style.color = 'red';
+    }
+};
+
+
+
 cargarDatos();
-
-// Funciones total ganancias y gastos
-// Funciones Balance - ganancias y gastos
-let balanceGanancias = document.getElementById('balance-ganancias');
-let balanceGastos = document.getElementById('balance-gastos');
-let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
-
-let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
-let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
-balanceGanancias.textContent = '+$ '+ sumaGanancia;
-balanceGanancias.style.color = 'green';
-
-let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
-let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
-balanceGastos.textContent = '-$ '+ sumaGastos;
-balanceGastos.style.color = 'red';
