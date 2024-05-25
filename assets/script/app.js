@@ -63,16 +63,24 @@ const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaci
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
+// ----------------------------
+// let balanceGanancias = document.getElementById('balance-ganancias');
+// let balanceGastos = document.getElementById('balance-gastos');
+// let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function crearFila(operacion, indice){
-    // Carga de datos en la tabla (fila individual)
     let fila = document.createElement('tr');
     fila.style.width = '100%'; 
     let columnaDescripcion = document.createElement('td');
-    columnaDescripcion.textContent = operacion.descripcion;
+    columnaDescripcion.textContent = capitalizeFirstLetter(operacion.descripcion);
     columnaDescripcion.style.textAlign = 'center';
     fila.appendChild(columnaDescripcion);
     let columnaCategoria = document.createElement('td');
-    columnaCategoria.textContent = operacion.categoria;
+    columnaCategoria.textContent = capitalizeFirstLetter(operacion.categoria);
     columnaCategoria.style.textAlign = 'center';
     fila.appendChild(columnaCategoria);
     let columnaFecha = document.createElement('td');
@@ -81,7 +89,6 @@ function crearFila(operacion, indice){
     fila.appendChild(columnaFecha);
     let columnaMonto = document.createElement('td');
     columnaMonto.style.textAlign = 'center';
-    console.log(operacion.tipo)
     if(operacion.tipo == 'gasto'){
         columnaMonto.textContent = '-$ ' +  operacion.monto;
         columnaMonto.style.color = 'red';
@@ -90,28 +97,24 @@ function crearFila(operacion, indice){
         columnaMonto.style.color = 'green';
     }
     fila.appendChild(columnaMonto);
-    // Td para los botones
     let columnaBotones = document.createElement('td');
     columnaBotones.style.textAlign = 'center';
     columnaBotones.style.display = 'flex';
     columnaBotones.style.justifyContent = 'space-evenly';
     fila.appendChild(columnaBotones);
-    // Boton Editar
     let columnaEditar = document.createElement('button');
     columnaEditar.textContent = 'Editar';
     columnaBotones.appendChild(columnaEditar);
-    // Evento Mostar Formulario Editar
     columnaEditar.dataset.indice = indice;
     columnaEditar.onclick = editar_operacion;
-    // Boton Eliminar
     let columnaEliminar = document.createElement('button');
     columnaEliminar.dataset.indice = indice;
     columnaEliminar.onclick = eliminar_operacion;
     columnaEliminar.textContent = 'Eliminar';
     columnaBotones.appendChild(columnaEliminar);
-
     listaNuevaOperacion.appendChild(fila);
-};
+}
+
 
 function crearTabla(operaciones){
     listaNuevaOperacion.innerHTML = '';
@@ -300,7 +303,6 @@ function filtrarOperaciones() {
 
     crearTabla(operacionesFiltradas);
 }
-
 filtroTipo.addEventListener('change', filtrarOperaciones);
 filtroCategoria.addEventListener('change', filtrarOperaciones);
 filtroDesde.addEventListener('change', filtrarOperaciones);
