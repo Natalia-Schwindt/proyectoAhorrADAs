@@ -29,6 +29,22 @@ function mostrarReportes(operaciones) {
     document.getElementById('categoria-mayor-balance').textContent = `Categoría con mayor balance: ${reportes.categoriaMayorBalance}`;
     document.getElementById('mes-mayor-ganancia').textContent = `Mes con mayor ganancia: ${reportes.mesMayorGanancia}`;
     document.getElementById('mes-mayor-gasto').textContent = `Mes con mayor gasto: ${reportes.mesMayorGasto}`;
+
+    // Actualizar tabla de categorías
+    const tablaCategorias = document.getElementById('tabla-categorias');
+    tablaCategorias.innerHTML = '';
+
+    for (let [categoria, { ganancia, gasto }] of Object.entries(reportes.categorias)) {
+        let balance = ganancia - gasto;
+        let fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td class="border px-4 py-2 border-none">${categoria}</td>
+            <td class="border px-4 py-2 border-none">+$${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none">-$${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+        `;
+        tablaCategorias.appendChild(fila);
+    }
 }
 
 function calcularReportes(operaciones) {
@@ -85,12 +101,17 @@ function calcularReportes(operaciones) {
     }
 
     return {
-        categoriaMayorGanancia: `${categoriaMayorGanancia.nombre} +$${categoriaMayorGanancia.monto}`,
-        categoriaMayorGasto: `${categoriaMayorGasto.nombre} -$${categoriaMayorGasto.monto}`,
-        categoriaMayorBalance: `${categoriaMayorBalance.nombre} +$${categoriaMayorBalance.monto}`,
-        mesMayorGanancia: `${mesMayorGanancia.nombre} +$${mesMayorGanancia.monto}`,
-        mesMayorGasto: `${mesMayorGasto.nombre} -$${mesMayorGasto.monto}`
+        categorias,
+        categoriaMayorGanancia: `${categoriaMayorGanancia.nombre} (+$${categoriaMayorGanancia.monto.toFixed(2)})`,
+        categoriaMayorGasto: `${categoriaMayorGasto.nombre} (-$${categoriaMayorGasto.monto.toFixed(2)})`,
+        categoriaMayorBalance: `${categoriaMayorBalance.nombre} (+$${categoriaMayorBalance.monto.toFixed(2)})`,
+        mesMayorGanancia: `${mesMayorGanancia.nombre} (+$${mesMayorGanancia.monto.toFixed(2)})`,
+        mesMayorGasto: `${mesMayorGasto.nombre} (-$${mesMayorGasto.monto.toFixed(2)})`
     };
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Obtener las operaciones del localStorage y mostrar los reportes
