@@ -3,11 +3,27 @@ let operaciones_array = [];
 
 function cargarCategorias(categorias) {
     categorias.forEach((categoria) => {
+        let nuevaOperacionCategoria = document.getElementById('nuevaOperacion-categoria');
+        let editarCategoria = document.getElementById('editar-categoria');
         let nuevaCategoria = document.createElement("option");
+        // select filtros
         nuevaCategoria.value = categoria;
         nuevaCategoria.textContent = categoria;
         categoriasSelect.appendChild(nuevaCategoria);
+
+        // select form crear
+        nuevaCategoria = document.createElement("option");
+        nuevaCategoria.value = categoria;
+        nuevaCategoria.textContent = categoria;
+        nuevaOperacionCategoria.appendChild(nuevaCategoria);
+
+        // select form editar
+        nuevaCategoria = document.createElement("option");
+        nuevaCategoria.value = categoria;
+        nuevaCategoria.textContent = categoria;
+        editarCategoria.appendChild(nuevaCategoria);
     });
+
 };
 
 function cargarStorage() {
@@ -63,11 +79,6 @@ const tituloParrafoOperaciones = document.getElementById('titulo-parrafo-operaci
 
 const seccionEditarOperacion = document.getElementById('seccion-editar-operacion');
 
-// ----------------------------
-// let balanceGanancias = document.getElementById('balance-ganancias');
-// let balanceGastos = document.getElementById('balance-gastos');
-// let balanceTotalGananciasGastos = document.getElementById('balance-total-ganancias-gastos');
-
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -114,7 +125,6 @@ function crearFila(operacion, indice){
     columnaBotones.appendChild(columnaEliminar);
     listaNuevaOperacion.appendChild(fila);
 }
-
 
 function crearTabla(operaciones){
     listaNuevaOperacion.innerHTML = '';
@@ -309,7 +319,6 @@ filtroDesde.addEventListener('change', filtrarOperaciones);
 filtroOrdenarPor.addEventListener('change', filtrarOperaciones);
 
 // Funcion Balance - ganancias y gastos
-
 function gananciaGasto(){
     let balanceGanancias = document.getElementById('balance-ganancias');
     let balanceGastos = document.getElementById('balance-gastos');
