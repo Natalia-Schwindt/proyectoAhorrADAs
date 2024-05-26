@@ -8,6 +8,8 @@ botonNavHamburguesa.addEventListener('click', () => {
 const ocultarImgTexto = document.getElementsByClassName('ocultar-img-texto');
 const reportesSection = document.getElementById('reportes');
 const imagenReportes = document.getElementById('imagen-reportes');
+const totalesCategoria = document.getElementById('totales-categoria');
+const totalesMes = document.getElementById('totales-mes');
 
 function ocultarImgYTexto() {
     for (let i = 0; i < ocultarImgTexto.length; i++) {
@@ -19,6 +21,8 @@ function ocultarImgYTexto() {
 
 function mostrarReportes(operaciones) {
     if (operaciones.length === 0) {
+        totalesCategoria.classList.add('hidden');
+        totalesMes.classList.add('hidden');
         return;
     }
 
@@ -30,6 +34,10 @@ function mostrarReportes(operaciones) {
     document.getElementById('mes-mayor-ganancia').textContent = `Mes con mayor ganancia: ${reportes.mesMayorGanancia}`;
     document.getElementById('mes-mayor-gasto').textContent = `Mes con mayor gasto: ${reportes.mesMayorGasto}`;
 
+    // Mostrar las secciones de totales
+    totalesCategoria.classList.remove('hidden');
+    totalesMes.classList.remove('hidden');
+    
     // Actualizar tabla de categorías
     const tablaCategorias = document.getElementById('tabla-categorias');
     tablaCategorias.innerHTML = '';
@@ -44,6 +52,21 @@ function mostrarReportes(operaciones) {
             <td class="border px-4 py-2 border-none">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
         `;
         tablaCategorias.appendChild(fila);
+    }
+    // Actualizar tabla de meses
+    const tablaMeses = document.getElementById('tabla-meses');
+    tablaMeses.innerHTML = '';
+
+    for (let [mes, { ganancia, gasto }] of Object.entries(reportes.meses)) {
+        let balance = ganancia - gasto;
+        let fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td class="border px-4 py-2 border-none">${mes}</td>
+            <td class="border px-4 py-2 border-none">+$${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none">-$${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+        `;
+        tablaMeses.appendChild(fila);
     }
 }
 
@@ -106,12 +129,9 @@ function calcularReportes(operaciones) {
         categoriaMayorGasto: `${categoriaMayorGasto.nombre} (-$${categoriaMayorGasto.monto.toFixed(2)})`,
         categoriaMayorBalance: `${categoriaMayorBalance.nombre} (+$${categoriaMayorBalance.monto.toFixed(2)})`,
         mesMayorGanancia: `${mesMayorGanancia.nombre} (+$${mesMayorGanancia.monto.toFixed(2)})`,
-        mesMayorGasto: `${mesMayorGasto.nombre} (-$${mesMayorGasto.monto.toFixed(2)})`
+        mesMayorGasto: `${mesMayorGasto.nombre} (-$${mesMayorGasto.monto.toFixed(2)})`,
+        meses // Devolver los datos de los meses
     };
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Obtener las operaciones del localStorage y mostrar los reportes
@@ -121,8 +141,10 @@ function cargarOperacionesYMostrarReportes() {
     if (operaciones_array.length > 0) {
         ocultarImgYTexto();
         mostrarReportes(operaciones_array);
+    } else {
+        totalesCategoria.classList.add('hidden');
+        totalesMes.classList.add('hidden');
     }
 }
 
 document.addEventListener('DOMContentLoaded', cargarOperacionesYMostrarReportes);
-
