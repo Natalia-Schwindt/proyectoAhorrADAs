@@ -16,7 +16,6 @@ const botonAgregarNuevaCategoria = document.getElementById('boton-agregar-nueva-
 let listaNuevaCategoria = document.getElementById('lista-nueva-categoria');
 
 function crearFila(categoria, indice){
-    // Carga de datos en la tabla (fila individual)
     let categoriaElemLi = document.createElement('li');
     categoriaElemLi.style.display = 'flex';
     categoriaElemLi.style.justifyContent = 'space-between';
@@ -106,10 +105,22 @@ formularioEditarCategoria.addEventListener("submit", function (event) {
     crearTabla(categorias_array);
 });
 
+// Eliminar categoria
 function eliminar_operacion(){
     indice = this.dataset.indice;
+    categoria = categorias_array[indice]
     categorias_array.splice(indice, 1);
     localStorage.setItem("categorias", categorias_array);
+
+    operaciones_json = localStorage.getItem("operaciones");
+    operaciones_array = JSON.parse(operaciones_json);
+    if (operaciones_array===null){
+        operaciones_array=[];
+    }
+
+    operacionesFiltradas = operaciones_array.filter(op => op.categoria !== categoria);
+    localStorage.setItem("operaciones", JSON.stringify(operacionesFiltradas));
+
     crearTabla(categorias_array);
 };
 
