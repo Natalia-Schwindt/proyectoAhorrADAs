@@ -85,7 +85,11 @@ function capitalizeFirstLetter(string) {
 
 function crearFila(operacion, indice){
     let fila = document.createElement('tr');
-    fila.style.width = '100%'; 
+    fila.style.width = '100%';
+    fila.style.height = '8vh';
+    fila.classList.add("odd:bg-slate-900")
+    fila.classList.add("even:bg-sky-950")
+    fila.classList.add("hover:bg-indigo-950")
     let columnaDescripcion = document.createElement('td');
     columnaDescripcion.textContent = capitalizeFirstLetter(operacion.descripcion);
     columnaDescripcion.style.textAlign = 'center';
@@ -105,16 +109,19 @@ function crearFila(operacion, indice){
         columnaMonto.style.color = 'red';
     } else {
         columnaMonto.textContent = '+$ ' +  operacion.monto;
-        columnaMonto.style.color = 'green';
+        columnaMonto.style.color = '#86ec10';
     }
     fila.appendChild(columnaMonto);
     let columnaBotones = document.createElement('td');
     columnaBotones.style.textAlign = 'center';
     columnaBotones.style.display = 'flex';
-    columnaBotones.style.justifyContent = 'space-evenly';
+    columnaBotones.style.justifyContent = 'center';
+    columnaBotones.style.flexDirection = 'column';
+    columnaBotones.style.height = '8vh';
     fila.appendChild(columnaBotones);
     let columnaEditar = document.createElement('button');
     columnaEditar.textContent = 'Editar';
+    columnaEditar.style.color = '#86ec10';
     columnaBotones.appendChild(columnaEditar);
     columnaEditar.dataset.indice = indice;
     columnaEditar.onclick = editar_operacion;
@@ -122,6 +129,7 @@ function crearFila(operacion, indice){
     columnaEliminar.dataset.indice = indice;
     columnaEliminar.onclick = eliminar_operacion;
     columnaEliminar.textContent = 'Eliminar';
+    columnaEliminar.style.color = 'red';
     columnaBotones.appendChild(columnaEliminar);
     listaNuevaOperacion.appendChild(fila);
 }
@@ -209,10 +217,7 @@ function eliminar_operacion(){
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
-
-    // eliminarOperacionPorCategoria()
 };
-
 
 const formNuevaOperacion = document.getElementById("form-nueva-operacion");
 const formularioEditar = document.getElementById("formulario-editar");
@@ -345,10 +350,10 @@ function gananciaGasto(){
 
     if (total > 0){
         balanceTotalGananciasGastos.textContent = '+$' + total;
-        balanceTotalGananciasGastos.style.color = 'green';
+        balanceTotalGananciasGastos.style.color = '#86ec10';
     } 
     else{
-        balanceTotalGananciasGastos.textContent = '-$' + total;
+        balanceTotalGananciasGastos.textContent = '$' + total;
         balanceTotalGananciasGastos.style.color = 'red';
     }
 };
