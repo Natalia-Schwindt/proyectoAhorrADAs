@@ -161,6 +161,8 @@ function crearOperacion() {
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
+
+    // eliminarOperacionPorCategoria()
 };
 
 function cargarDatos(){
@@ -171,6 +173,8 @@ function cargarDatos(){
     }
     crearTabla(operaciones_array);
     gananciaGasto();
+
+    // eliminarOperacionPorCategoria()
 };
 
 let editarDescripcion = document.getElementById('editar-descripcion');
@@ -205,7 +209,10 @@ function eliminar_operacion(){
     localStorage.setItem("operaciones", JSON.stringify(operaciones_array));
     crearTabla(operaciones_array);
     gananciaGasto();
+
+    // eliminarOperacionPorCategoria()
 };
+
 
 const formNuevaOperacion = document.getElementById("form-nueva-operacion");
 const formularioEditar = document.getElementById("formulario-editar");
