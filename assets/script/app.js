@@ -334,7 +334,7 @@ function gananciaGasto(){
     let arrayGanancia = operaciones_array.filter((op)=>op.tipo == "ganancia");
     let sumaGanancia = arrayGanancia.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
     balanceGanancias.textContent = '+$ '+ sumaGanancia;
-    balanceGanancias.style.color = 'green';
+    balanceGanancias.style.color = '#86ec10';
 
     let arrayGastos = operaciones_array.filter((op)=>op.tipo == "gasto");
     let sumaGastos = arrayGastos.reduce((a, b) => parseFloat(a) + parseFloat(b.monto), 0);
