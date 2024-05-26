@@ -21,6 +21,7 @@ function ocultarImgYTexto() {
 
 function mostrarReportes(operaciones) {
     if (operaciones.length === 0) {
+        reportesSection.classList.add('hidden');
         totalesCategoria.classList.add('hidden');
         totalesMes.classList.add('hidden');
         return;
@@ -28,16 +29,35 @@ function mostrarReportes(operaciones) {
 
     const reportes = calcularReportes(operaciones);
 
-    document.getElementById('categoria-mayor-ganancia').textContent = `Categoría con mayor ganancia: ${reportes.categoriaMayorGanancia}`;
-    document.getElementById('categoria-mayor-gasto').textContent = `Categoría con mayor gasto: ${reportes.categoriaMayorGasto}`;
-    document.getElementById('categoria-mayor-balance').textContent = `Categoría con mayor balance: ${reportes.categoriaMayorBalance}`;
-    document.getElementById('mes-mayor-ganancia').textContent = `Mes con mayor ganancia: ${reportes.mesMayorGanancia}`;
-    document.getElementById('mes-mayor-gasto').textContent = `Mes con mayor gasto: ${reportes.mesMayorGasto}`;
+    // Mostrar la sección de resumen
+    reportesSection.classList.remove('hidden');
+
+    // Actualizar tabla de resumen
+    const tablaResumen = document.getElementById('tabla-resumen');
+    tablaResumen.innerHTML = '';
+
+    const resumenDatos = [
+        { descripcion: 'Categoría con mayor ganancia', nombre: reportes.categoriaMayorGanancia.nombre, valor: `+$${reportes.categoriaMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Categoría con mayor gasto', nombre: reportes.categoriaMayorGasto.nombre, valor: `-$${reportes.categoriaMayorGasto.monto.toFixed(2)}` },
+        { descripcion: 'Categoría con mayor balance', nombre: reportes.categoriaMayorBalance.nombre, valor: `+$${reportes.categoriaMayorBalance.monto.toFixed(2)}` },
+        { descripcion: 'Mes con mayor ganancia', nombre: reportes.mesMayorGanancia.nombre, valor: `+$${reportes.mesMayorGanancia.monto.toFixed(2)}` },
+        { descripcion: 'Mes con mayor gasto', nombre: reportes.mesMayorGasto.nombre, valor: `-$${reportes.mesMayorGasto.monto.toFixed(2)}` },
+    ];
+
+    resumenDatos.forEach(item => {
+        let fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td class="border px-4 py-2 border-none">${item.descripcion}</td>
+            <td class="border px-4 py-2 border-none">${item.nombre}</td>
+            <td class="border px-4 py-2 border-none">${item.valor}</td>
+        `;
+        tablaResumen.appendChild(fila);
+    });
 
     // Mostrar las secciones de totales
     totalesCategoria.classList.remove('hidden');
     totalesMes.classList.remove('hidden');
-    
+
     // Actualizar tabla de categorías
     const tablaCategorias = document.getElementById('tabla-categorias');
     tablaCategorias.innerHTML = '';
@@ -53,6 +73,7 @@ function mostrarReportes(operaciones) {
         `;
         tablaCategorias.appendChild(fila);
     }
+
     // Actualizar tabla de meses
     const tablaMeses = document.getElementById('tabla-meses');
     tablaMeses.innerHTML = '';
@@ -125,12 +146,12 @@ function calcularReportes(operaciones) {
 
     return {
         categorias,
-        categoriaMayorGanancia: `${categoriaMayorGanancia.nombre} (+$${categoriaMayorGanancia.monto.toFixed(2)})`,
-        categoriaMayorGasto: `${categoriaMayorGasto.nombre} (-$${categoriaMayorGasto.monto.toFixed(2)})`,
-        categoriaMayorBalance: `${categoriaMayorBalance.nombre} (+$${categoriaMayorBalance.monto.toFixed(2)})`,
-        mesMayorGanancia: `${mesMayorGanancia.nombre} (+$${mesMayorGanancia.monto.toFixed(2)})`,
-        mesMayorGasto: `${mesMayorGasto.nombre} (-$${mesMayorGasto.monto.toFixed(2)})`,
-        meses // Devolver los datos de los meses
+        meses, // Incluir los datos de los meses en el objeto de retorno
+        categoriaMayorGanancia,
+        categoriaMayorGasto,
+        categoriaMayorBalance,
+        mesMayorGanancia,
+        mesMayorGasto,
     };
 }
 
@@ -142,6 +163,7 @@ function cargarOperacionesYMostrarReportes() {
         ocultarImgYTexto();
         mostrarReportes(operaciones_array);
     } else {
+        reportesSection.classList.add('hidden');
         totalesCategoria.classList.add('hidden');
         totalesMes.classList.add('hidden');
     }
