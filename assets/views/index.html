@@ -4,75 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AhorrADAs</title>
+    <link rel="icon" type="../img/icono.png">
     <script src="https://kit.fontawesome.com/cd30d5437a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header class="flex justify-between items-center bg-green-500 h-16">
+<body class="bg-slate-900">
+    <header class="flex justify-between items-center bg-slate-800 h-16 drop-shadow-xl">
         <div class="flex justify-around items-center w-2/3 md:w-1/3 lg:w-1/3 xl:w-2/12">
-            <i class="fa-solid fa-wallet text-white text-3xl"></i>
-            <h1 class="text-white text-3xl font-bold">AhorrADAs</h1>
+            <!-- <i class="fa-solid fa-wallet text-white text-3xl"></i> -->
+            <img src="../img/logo.png" alt="Logo" class="w-9 md:w-12 drop-shadow-xl">
+            <h1 class="text-blue-500 text-3xl font-bold">AhorrADAs</h1>
         </div>
         <nav>
             <div class="justify-end flex lg:hidden">
                 <button class="mr-8" id="boton-nav-hamburguesa">
-                    <i class="fa-solid fa-bars text-white"></i>
+                    <i class="fa-solid fa-bars text-blue-500"></i>
                 </button>
             </div>
-            <ul id="ul-nav-header" class="hidden absolute top-16 left-0 w-full h-28 flex flex-col items-center justify-center border-t bg-green-500 gap-y-2.5 lg:flex lg:flex-row lg:top-0 lg:h-0 lg:border-t-0 lg:relative">
-                <li class="text-white w-4/12 md:w-1/6 lg:w-40 lg:flex lg:items-center">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <a href="index.html" class="ml-3 lg:ml-1">Balance</a>
+            <ul id="ul-nav-header" class="hidden absolute top-16 left-0 w-full h-28 flex flex-col items-center justify-center border-t bg-slate-800 gap-y-2.5 lg:flex lg:flex-row lg:top-0 lg:h-0 lg:border-t-0 lg:relative">
+                <li class="text-blue-500 w-4/12 md:w-1/6 lg:w-40 lg:flex lg:items-center">
+                    <i class="fa-solid fa-chart-line text-blue-500"></i>
+                    <a href="index.html" class="ml-3 lg:ml-1 text-blue-500">Balance</a>
                 </li>
-                <li class="text-white w-4/12 md:w-1/6 lg:w-40 lg:flex items-center">
-                    <i class="fa-solid fa-tag"></i>
-                    <a href="categorias.html" class="ml-3 lg:ml-1">Categorías</a>
+                <li class="text-blue-500 w-4/12 md:w-1/6 lg:w-40 lg:flex items-center">
+                    <i class="fa-solid fa-tag text-blue-500"></i>
+                    <a href="categorias.html" class="ml-3 lg:ml-1 text-blue-500">Categorías</a>
                 </li>
-                <li class="text-white w-4/12 md:w-1/6 lg:w-40 lg:flex items-center">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <a href="reportes.html" class="ml-3 lg:ml-1">Reportes</a>
+                <li class="text-blue-500 w-4/12 md:w-1/6 lg:w-40 lg:flex items-center">
+                    <i class="fa-solid fa-chart-pie text-blue-500"></i>
+                    <a href="reportes.html" class="ml-3 lg:ml-1 text-blue-500">Reportes</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main class="flex flex-col items-center bg-slate-100 gap-6 lg:flex lg:flex-row lg:justify-center lg:pb-10"">
+    <main class="flex flex-col items-center gap-6 lg:flex lg:flex-row lg:justify-center lg:pb-10"">
         <!-- Seccion Balance (index Balance) -->
         <section id="balance-filtros" class="flex flex-col items-center lg:w-4/12">
-            <div class="flex flex-col bg-white shadow-lg rounded-md w-10/12 mt-20 mb-5 p-5 lg:w-80">
-                <h2 class="pt-3 pb-14 text-3xl font-bold text-slate-700">Balance</h2>
+            <div class="flex flex-col bg-slate-800 shadow-lg rounded-md w-10/12 mt-10 mb-5 p-5 lg:w-80">
+                <h2 class="pt-3 pb-14 text-3xl font-bold text-blue-500">Balance</h2>
                 <div class="flex justify-between pb-6 text-slate-700">
-                    <h4 class="text-xl">Ganancias</h4>
+                    <h4 class="text-xl text-blue-50">Ganancias</h4>
                     <p id="balance-ganancias" class="text-green-500">+$0</p>
                 </div>
                 <div class="flex justify-between pb-6 text-slate-700">
-                    <h4 class="text-xl">Gastos</h4>
+                    <h4 class="text-xl text-blue-50">Gastos</h4>
                     <p id="balance-gastos" class="text-red-500">-$0</p>
                 </div>
                 <div class="flex justify-between text-slate-700">
-                    <h3 class="text-2xl">Total</h3>
+                    <h3 class="text-2xl text-blue-50">Total</h3>
                     <p id="balance-total-ganancias-gastos" class="font-semibold">$0</p>
                 </div>
             </div>
             <!-- Contenedor Filtros (index Balance) -->
-            <div class="flex flex-col bg-white shadow-lg rounded-md w-10/12 lg:w-80">
+            <div class="flex flex-col bg-slate-800 shadow-lg rounded-md w-10/12 lg:w-80">
                 <div class="flex justify-between items-center p-5 text-blue-500">
-                    <h2 class="text-2xl font-bold text-slate-700">Filtros</h2>
+                    <h2 class="text-2xl font-bold text-blue-500">Filtros</h2>
                     <label id="ocultar-filtros">Ocultar filtros</label>
                 </div>
                 <form id="form-filtros" class="p-5 gap-6 w-full">
-                    <label for="tipo" class="font-bold">Tipo</label>
+                    <label for="tipo" class="font-bold text-blue-50">Tipo</label>
                     <select name="tipo" id="tipo" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                         <option value="todos">Todos</option>
                         <option value="gasto">Gasto</option>
                         <option value="ganancia">Ganancia</option>
                     </select>
-                    <label for="categoria" class="font-bold">Categoria</label>
+                    <label for="categoria" class="font-bold text-blue-50">Categoria</label>
                     <select name="categoria" id="categoria" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                         <option value="todas">Todas</option>
                     </select>
-                    <label for="desde" class="font-bold">Desde</label>
+                    <label for="desde" class="font-bold text-blue-50">Desde</label>
                     <input type="date" name="desde" id="desde" class="w-full my-3 p-2 border-2 border-solid border-grey-500 rounded-md">
-                    <label for="ordenar-por" class="font-bold">Ordenar por</label>
+                    <label for="ordenar-por" class="font-bold text-blue-50">Ordenar por</label>
                     <select name="ordenar-por" id="ordenar-por" class="w-full mt-3 p-2 border-2 border-solid border-grey-500 rounded-md">
                         <option value="masReciente">Más reciente</option>
                         <option value="menosReciente">Menos reciente</option>
@@ -85,17 +87,17 @@
             </div>
         </section>
         <!-- Seccion Operaciones (index Balance)-->
-        <section id="operaciones" class="flex flex-col bg-white shadow-lg rounded-md w-10/12 p-5 mb-5 lg:w-2/4">
+        <section id="operaciones" class="flex flex-col bg-slate-800 shadow-lg rounded-md w-10/12 p-5 mb-5 lg:w-2/4 lg:mb-16">
             <div class="lg:flex justify-between">
-                <h2 class="text-2xl font-bold text-slate-700 mb-7">Operaciones</h2>
-                <button id="boton-nueva-operacion" class="bg-green-500 text-white px-3 py-2 mb-20 rounded-md">+ Nueva operación</button>
+                <h2 class="text-2xl font-bold text-blue-500 mb-7">Operaciones</h2>
+                <button id="boton-nueva-operacion" class="bg-blue-500 text-white px-3 py-2 mb-20 rounded-md">+ Nueva operación</button>
             </div>
             <figure id="figure" class="w-full mb-8 lg:flex justify-center">
                 <img id="imagen-index" src="../img/billetera.svg" alt="Billetera" class="lg:max-w-md">
             </figure>
             <div id="titulo-parrafo-operaciones" class="flex flex-col items-center pb-20">
-                <h2 class="text-2xl text-slate-700 mb-5">Sin resultados</h2>
-                <p class="text-base text-center text-slate-600">Cambia los filtros o agrega operaciones</p>
+                <h2 class="text-2xl text-blue-500 mb-5">Sin resultados</h2>
+                <p class="text-base text-center text-blue-500">Cambia los filtros o agrega operaciones</p>
             </div>
             <table class="table-auto">
                 <thead class="hidden" id="table-listado-balance">
