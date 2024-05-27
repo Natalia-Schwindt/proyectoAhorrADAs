@@ -24,14 +24,18 @@ function crearFila(categoria, indice){
     categoriaElemP.textContent = categoria;
     categoriaElemP.style.width = '70%';
     categoriaElemP.style.textAlign = 'start';
+    categoriaElemP.style.color = 'white';
 
     let botonEditarCategoria = document.createElement('button');
     botonEditarCategoria.textContent = 'Editar';
+    botonEditarCategoria.style.color = '#86ec10';
+    botonEditarCategoria.style.paddingRight = '10px';
     botonEditarCategoria.dataset.indice = indice;
     botonEditarCategoria.onclick = editar_operacion;
 
     let botonEliminarCategoria = document.createElement('button');
     botonEliminarCategoria.textContent = 'Eliminar';
+    botonEliminarCategoria.style.color = 'red';
     botonEliminarCategoria.dataset.indice = indice;
     botonEliminarCategoria.onclick = eliminar_operacion;
     categoriaElemLi.appendChild(categoriaElemP);
