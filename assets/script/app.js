@@ -87,9 +87,9 @@ function crearFila(operacion, indice){
     let fila = document.createElement('tr');
     fila.style.width = '100%';
     fila.style.height = '8vh';
-    fila.classList.add("odd:bg-slate-900")
-    fila.classList.add("even:bg-sky-950")
-    fila.classList.add("hover:bg-indigo-950")
+    fila.classList.add("odd:bg-slate-900");
+    fila.classList.add("even:bg-sky-950");
+    fila.classList.add("hover:bg-indigo-950");
     let columnaDescripcion = document.createElement('td');
     columnaDescripcion.textContent = capitalizeFirstLetter(operacion.descripcion);
     columnaDescripcion.style.textAlign = 'center';
