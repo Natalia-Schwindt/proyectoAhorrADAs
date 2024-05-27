@@ -66,10 +66,10 @@ function mostrarReportes(operaciones) {
         let balance = ganancia - gasto;
         let fila = document.createElement('tr');
         fila.innerHTML = `
-            <td class="border px-4 py-2 border-none">${categoria}</td>
-            <td class="border px-4 py-2 border-none">+$${ganancia.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none">-$${gasto.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${categoria}</td>
+            <td class="border px-4 py-2 border-none text-center">+$${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">-$${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
         `;
         tablaCategorias.appendChild(fila);
     }
@@ -82,10 +82,10 @@ function mostrarReportes(operaciones) {
         let balance = ganancia - gasto;
         let fila = document.createElement('tr');
         fila.innerHTML = `
-            <td class="border px-4 py-2 border-none">${mes}</td>
-            <td class="border px-4 py-2 border-none">+$${ganancia.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none">-$${gasto.toFixed(2)}</td>
-            <td class="border px-4 py-2 border-none">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${mes}</td>
+            <td class="border px-4 py-2 border-none text-center">+$${ganancia.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">-$${gasto.toFixed(2)}</td>
+            <td class="border px-4 py-2 border-none text-center">${balance >= 0 ? '+' : ''}$${balance.toFixed(2)}</td>
         `;
         tablaMeses.appendChild(fila);
     }
